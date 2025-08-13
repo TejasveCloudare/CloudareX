@@ -1,0 +1,122 @@
+.dashboardWrapper {
+    background-color: #000;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    min-height: 80vh;
+    /* padding: 2rem; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 82vw;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.cardWrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+
+/* Left Section */
+
+.leftCard {
+    flex: 2;
+    background-color: #111;
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftContent h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.leftContent p {
+    color: #ccc;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.jobPostBtn {
+    padding: 0.8rem 1.5rem;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.termsLink {
+    font-size: 0.8rem;
+    color: #999;
+    text-decoration: underline;
+}
+
+.mockupBox {
+    width: 200px;
+    height: 150px;
+    background-color: #181818;
+    border: 1px solid #222;
+    border-radius: 0.5rem;
+}
+
+
+/* Right Section */
+
+.rightCard {
+    flex: 1;
+    background-color: #111;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.lockHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lockHeader h3 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.lockedBadge {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.lockIcon {
+    font-size: 0.9rem;
+}
+
+.rightDesc {
+    margin: 1rem 0;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.viewBtn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #666;
+    border-radius: 2rem;
+    padding: 0.6rem 1.2rem;
+    cursor: not-allowed;
+}

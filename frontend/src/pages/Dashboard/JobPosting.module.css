@@ -1,0 +1,209 @@
+.pageWrapper {
+    background-color: #0f0f0f;
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.logo {
+    width: 36px;
+    height: 36px;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 2rem;
+}
+
+.tab {
+    background-color: #1d1d1d;
+    color: #ccc;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.activeTab {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+
+/* Table styles */
+
+.jobsTable {
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.jobsTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jobsTable th,
+.jobsTable td {
+    padding: 16px;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #2a2a2a;
+    min-height: 60px;
+    /* keeps rows consistent */
+    line-height: 1.4;
+    /* ensures vertical space inside */
+    vertical-align: middle;
+    /* aligns content vertically */
+}
+
+.jobsTable th {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.jobsTable td {
+    color: #eee;
+}
+
+
+/* Status badges */
+
+.statusActive {
+    background-color: #14532d;
+    color: #22c55e;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.statusInactive {
+    background-color: #3f3f46;
+    color: #f87171;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+
+/* "Changes Requested" badge */
+
+.statusChanges {
+    background-color: #451a03;
+    color: #f97316;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+
+/* View job post button */
+
+.viewBtn {
+    background-color: #27272a;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    border: 1px solid #3f3f46;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.viewBtn:hover {
+    background-color: #3f3f46;
+}
+
+
+/* Empty state card */
+
+.emptyStateCard {
+    background-color: #1b1b1b;
+    padding: 4rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.emptyIcon {
+    width: 40px;
+    margin-bottom: 1rem;
+}
+
+.emptyText {
+    font-size: 16px;
+    margin-bottom: 1.5rem;
+    color: #eee;
+}
+
+.postBtn {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.learnLink {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 1rem;
+    text-decoration: underline dotted;
+    cursor: pointer;
+}
+
+.sidebarView {
+    display: flex;
+    gap: 1rem;
+}
+
+.formArea {
+    flex: 1;
+}
+
+.getStarted {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+
+/* Verified badges */
+
+.verifiedBadge {
+    background-color: #14532d;
+    color: #22c55e;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.notVerifiedBadge {
+    background-color: #3f3f46;
+    color: #fbbf24;
+    /* amber for not verified */
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}

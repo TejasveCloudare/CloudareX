@@ -1,0 +1,63 @@
+.wrapper {
+    background-color: #0c0f1a;
+    padding: 4rem 2rem;
+    color: white;
+    text-align: center;
+}
+
+.heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+.highlight {
+    color: #3c82f4;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Force 2 cards per row */
+    gap: 2rem;
+    justify-items: center;
+    padding: 0% 20%
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: left;
+    max-width: 340px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.icon {
+    height: 48px;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+p {
+    font-size: 0.95rem;
+    color: #cfcfcf;
+}
+
+
+/* Responsive: Stack cards on smaller screens */
+
+@media screen and (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

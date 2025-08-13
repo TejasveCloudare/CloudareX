@@ -1,0 +1,47 @@
+.stepForm {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.label {
+    display: block;
+    font-size: 0.95rem;
+    margin: 12px 0 6px;
+    color: #bbbbbb;
+}
+
+.input {
+    width: 80%;
+    padding: 10px 14px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    border-color: #00bcd4;
+    box-shadow: 0px 0px 8px rgba(0, 188, 212, 0.6);
+}
+
+.input::placeholder {
+    color: #777;
+}

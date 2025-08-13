@@ -1,0 +1,32 @@
+{
+    "heading": {
+        "title": "We've helped them hire mid-senior to leadership teams.",
+        "subtitle": ""
+    },
+    "companies": [
+        {
+            "name": "Amazon",
+            "logo": "logo.png"
+        },
+        {
+            "name": "TCS",
+            "logo": "logo.png"
+        },
+        {
+            "name": "IBM",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Accenture",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Google",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Microsoft",
+            "logo": "logo.png"
+        }
+    ]
+}

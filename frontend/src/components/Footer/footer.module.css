@@ -1,0 +1,22 @@
+/**
+  * Created by - Ashish Dewangan on 24-05-2024
+  * Reason - For styling of footer section
+  */
+
+.footerContainer {
+  height: 7vh;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--footer-background-color);
+  left: 0;
+  bottom: 0;
+}
+
+@media screen and (max-width: 720px) {
+  .footerContainer {
+    flex-direction: column;
+    align-items: center;
+    height: 17vh;
+  }
+}

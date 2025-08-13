@@ -1,0 +1,23 @@
+[
+    {
+        "text": "Hiring the right talent is hard, CloudareX community is the solution,",
+        "author": "Sailesh Arya",
+        "designation": "Founder and CEO",
+        "company": "Cloudare",
+        "image": "sailesh.png"
+    },
+    {
+        "text": "CloudareX connected us to some of the sharpest minds in product and growth.",
+        "author": "Aanya Mehra",
+        "designation": "Head of Product",
+        "company": "Plum",
+        "image": "post.gif"
+    },
+    {
+        "text": "Thanks to CloudareX, we scaled faster than we imagined.",
+        "author": "Rohan Bansal",
+        "designation": "Co-founder",
+        "company": "CoinDCX",
+        "image": "logo.png"
+    }
+]

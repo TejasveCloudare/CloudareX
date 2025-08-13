@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    height: 79vh;
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    /* margin-top: 10vh; */
+    align-items: center;
+    padding: 50px;
+    gap: 50px;
+}
+
+
+/* .left {
+    width: 45%;
+}
+
+.right {
+    width: 50%;
+    background: #181818;
+    padding: 2rem;
+    border-radius: 1rem;
+} */
+
+.left,
+.right {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #1f1f1f;
+    color: white;
+}
+
+button {
+    background-color: #0040ff;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.previewCard {
+    background: #101010;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.detailsBox p {
+    margin: 0.5rem 0;
+}

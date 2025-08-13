@@ -1,0 +1,30 @@
+{
+    "badge": "LIMITED TIME OFFER",
+    "discount": {
+        "old": "9.5%",
+        "new": "Free",
+        "note": "Offer valid for Limited time"
+    },
+    "cta": {
+        "text": "Post a free job",
+        "link": "/login"
+    },
+    "features": [
+        "Curated talent directory of operators & leaders",
+        "Access to ECTC of candidates",
+        "Access to projects built by candidates",
+        "Employer branding within the GrowthX community",
+        "Get 48 hour email & WhatsApp support",
+        "Pre-vetted for communication & problem solving skills",
+        "Higher response rate from candidates",
+        "Engage with talent dedicated to professional growth"
+    ],
+    "trustedBy": [
+        "logo.png",
+        "logo.png",
+        "logo.png",
+        "logo.png",
+        "logo.png",
+        "logo.png"
+    ]
+}

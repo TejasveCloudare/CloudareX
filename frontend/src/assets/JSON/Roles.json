@@ -1,0 +1,29 @@
+{
+    "heading": {
+        "title": "Roles you can hire at",
+        "highlight": "GrowthX",
+        "subtitle": "We are uniquely well positioned to help top companies as they scale their Product, Marketing, and Exec teams. The median experience of GrowthX members is 7 years."
+    },
+    "roles": [
+        {
+            "title": "Product",
+            "description": "Product Manager, Senior Product Manager, Director and VP of Product and 15 more roles.",
+            "icon": "logo.png"
+        },
+        {
+            "title": "Marketing",
+            "description": "Product Marketing, Performance marketing and 25 more roles.",
+            "icon": "logo.png"
+        },
+        {
+            "title": "Growth",
+            "description": "Head of Growth, Growth Manager, Brand Growth, and 10 more roles",
+            "icon": "logo.png"
+        },
+        {
+            "title": "Strategy & Business",
+            "description": "Founders office, Entrepreneur in Residence, Business and 15 more roles",
+            "icon": "logo.png"
+        }
+    ]
+}

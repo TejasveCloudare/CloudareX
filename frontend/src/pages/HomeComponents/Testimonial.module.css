@@ -1,0 +1,67 @@
+.wrapper {
+    background-color: #000;
+    color: white;
+    padding: 60px 40px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1079px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.textSection {
+    flex: 1;
+    /* min-width: 300px; */
+    max-width: 45%;
+}
+
+.quote {
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.role {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.separator {
+    width: 1px;
+    height: 40px;
+    background-color: #999;
+}
+
+.company {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.imageSection {
+    /* flex: 1; */
+    display: flex;
+    justify-content: center;
+    min-width: 300px;
+}
+
+.personImage {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}

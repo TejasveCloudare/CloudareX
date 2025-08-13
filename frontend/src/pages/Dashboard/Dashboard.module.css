@@ -1,0 +1,39 @@
+.dashboardContainer {
+    display: flex;
+    min-height: 93vh;
+    background: #000;
+}
+
+
+/* Main content area */
+
+.contentArea {
+    flex: 1;
+    padding: 20px;
+    margin-top: 8vh;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+
+/* When sidebar is expanded (desktop) */
+
+.contentArea.expanded {
+    margin-left: 200px;
+}
+
+
+/* When sidebar is collapsed (desktop) */
+
+.contentArea.collapsed {
+    margin-left: 60px;
+}
+
+
+/* Mobile view — sidebar overlays, so no left margin */
+
+@media (max-width: 768px) {
+    .contentArea {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+}

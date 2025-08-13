@@ -1,0 +1,24 @@
+[
+    {
+        "number": "01",
+        "title": "Post a job",
+        "description": "Post unlimited jobs at no upfront cost.",
+        "image": "post.gif",
+        "alt": "Post a Job Board"
+    },
+    {
+        "number": "02",
+        "title": "Get applications from the best talent",
+        "description": "You also get access to our member directory.",
+        "image": "post.gif",
+        "alt": "Applications from Members"
+    },
+    {
+        "number": "03",
+        "title": "Pay only if you hire",
+        "description": "Pay <strike>₹5%</strike> <span class='free'>Free</span> only when you hire a candidate.<br />This is free for a limited time period.",
+        "image": "post.gif",
+        "alt": "Candidate Hired",
+        "isHTML": true
+    }
+]

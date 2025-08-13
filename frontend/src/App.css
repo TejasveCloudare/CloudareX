@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(230, 27, 27);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+:root {
+  /**Code Modified by Tejasve Gupta on 27-05-2024
+Reason - Colour Adjusted of header and footer and Margin also*/
+  --header-background-color: black;
+  --header-border: 1px solid rgb(174, 174, 174);
+  --header-item-color: white;
+  --header-text-background-color: #2574B7;
+  --footer-background-color: #2a4155;
+  --page-background-color: black;
+  --page-margin-left: 30px;
+  --page-margin-right: 30px;
+  --page-margin-top: 8vh;
+  /**End of Code Modified by Tejasve Gupta on 27-05-2024
+Reason - Colour Adjusted of header and footer and Margin also*/
+  --page-margin-bottom: 0vh;
+  --page-padding-top: 0.4vh;
+  --page-padding-bottom: 2vh;
+  --page-min-height: 85vh;
+  --page-title-font-size: 22.5px;
+  --page-title-font-color: black;
+  --page-title-font-weight: bold;
+  --page-title-text-align: center;
+  --page-title-margin-bottom: 10px;
+  /* --page-background-image: url("../public/mandala_art_bg.png"); */
+  /* --page-background-color: rgb(255, 254, 253, 0.7); */
+  --page-subTitle-font-size: 18px;
+  --page-subTitle-font-color: black;
+  --page-subTitle-font-weight: bold;
+  --page-subTitle-text-align: left;
+  --page-content-title-font-size: 18px;
+  --page-content-title-font-color: black;
+  --page-content-title-font-weight: bold;
+  --page-content-title-text-align: left;
+  --page-content-subTitle-font-size: 16px;
+  --page-content-subTitle-font-color: black;
+  --page-content-subTitle-font-weight: bold;
+  --page-content-subTitle-text-align: left;
+  --bottom-margin-between-contents: 30px;
+  --page-content-font-size: 14px;
+  --page-content-font-color: black;
+  --page-content-font-weight: 400;
+  --page-content-text-align: left;
+  --page-content-margin-left: 70px;
+  --page-content-margin-right: 70px;
+  --page-content-not-found-margin-top: 1rem;
+  --page-content-not-found-margin-bottom: 0rem;
+  --page-content-not-found-text-align: center;
+  --page-content-not-found-font-size: 12px;
+  --page-content-not-fount-font-color: black;
+  --page-content-not-found-font-weight: 400;
+  --page-validation-font-size: 12px;
+  --page-validation-padding-left: 11px;
+  --form-label-font-size: 13px;
+  --form-label-font-color: black;
+  --form-label-font-weight: bold;
+  --horizontal-line-thickness: 2px;
+  --horizontal-line-background-color: #e6e6e8;
+  --horizontal-line-bottom-margin: 5px;
+  --vertical-line-thickness: 2px;
+  --vertical-line-background-color: #e6e6e8;
+  --horizontal-line-drawer-color: black;
+  --horizontal-line-drawer-margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 720px) {
+  :root {
+    --page-margin-left: 10px;
+    --page-margin-right: 10px;
+    --page-min-height: 76vh;
+    --page-content-margin-left: 0px;
+    --page-content-margin-right: 0px;
+    --page-margin-top: 7vh;
+    --page-margin-bottom: 0;
+    --horizontal-line-thickness: 2px;
+    --horizontal-line-background-color: #e6e6e8;
+  }
+}

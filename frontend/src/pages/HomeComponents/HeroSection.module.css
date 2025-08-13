@@ -1,0 +1,64 @@
+.heroWrapper {
+    background-color: #000;
+    background-image: radial-gradient(circle at center, rgba(0, 102, 255, 0.15), transparent 60%);
+    /* background-image: url('/grid-bg.png'); <- remove or comment this */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.heroContent {
+    max-width: 700px;
+    margin: auto;
+}
+
+.heroLine {
+    width: 120px;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+    margin: 0 auto 24px auto;
+}
+
+.heroHeading {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.blue {
+    color: #2e81f7;
+}
+
+.break {
+    display: block;
+    margin-top: 10px;
+}
+
+.heroSubtext {
+    margin: 24px 0;
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.ctaButton {
+    background-color: #2e81f7;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.ctaButton:hover {
+    background-color: #1b5fc4;
+}

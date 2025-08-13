@@ -1,0 +1,166 @@
+/**
+ * Created by - Ashish on 24-05-2024
+ * Reason - To have styling for header section
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.mainHeaderContainer {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  z-index: 9999;
+  background: var(--header-background-color);
+  border-radius: 0px 0px 8px 8px;
+  border-bottom: var(--header-border);
+}
+
+
+/* Left section - Logo */
+
+.section1 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+
+/* Right section - Login/Logout */
+
+.sectionRight {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+}
+
+
+/* Common header link styles */
+
+.headerFont {
+  color: var(--header-item-color);
+  background: var(--header-text-background-color);
+  font-size: 20px;
+}
+
+.headerItem {
+  height: 80%;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.headerItem:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.headerItem:hover>.icon {
+  color: rgb(0, 69, 90);
+  cursor: pointer;
+}
+
+.active {
+  text-decoration: underline 1px rgb(0, 48, 70);
+  color: rgb(0, 48, 77);
+}
+
+.link {
+  background-color: #2e81f7;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 74px;
+  height: 15px;
+  padding: 14px;
+  margin-right: 20px;
+  transition: background 0.3s ease;
+}
+
+.link:hover {
+  background-color: #1b5fc4;
+}
+
+.logo {
+  max-height: 70px;
+  /* Controls vertical size */
+  height: auto;
+  /* Maintain aspect ratio */
+  max-width: 160px;
+  /* Prevents it from overflowing */
+  object-fit: contain;
+  /* Keeps image within bounds without cropping */
+  display: block;
+}
+
+.button {
+  display: none;
+}
+
+
+/* --- Mobile Responsive --- */
+
+@media screen and (max-width: 960px) {
+  .mainHeaderContainer {
+    height: 7vh;
+  }
+
+  .logo {
+    height: 10vh;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .section1 {
+    width: 60%;
+    padding-left: 10px;
+  }
+
+  .sectionRight {
+    width: 40%;
+    padding-right: 10px;
+  }
+
+  .headerFont {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .mainHeaderContainer {
+    height: 7vh;
+  }
+
+  .logo {
+    height: 12vh;
+    border-radius: 0% 50% 50% 0%;
+  }
+
+  .section1 {
+    width: 60%;
+  }
+
+  .sectionRight {
+    width: 40%;
+  }
+
+  .headerFont {
+    font-size: 14px;
+  }
+}

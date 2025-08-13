@@ -1,0 +1,75 @@
+.wrapper {
+    padding: 80px 20px;
+    background-color: #fff;
+    text-align: center;
+    color: #000;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.heading span {
+    color: #2e81f7;
+}
+
+.subheading {
+    margin: 20px auto 60px;
+    max-width: 720px;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/* Updated grid layout */
+
+.cardGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Force 2 cards per row */
+    gap: 2rem;
+    justify-items: center;
+    padding: 0% 20%
+}
+
+.card {
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    /* Increased horizontal padding, less vertical */
+    text-align: left;
+    box-shadow: 0 0 0 1px #333;
+    display: flex;
+    flex-direction: column;
+    /* gap: 8px; */
+    transition: all 0.3s ease;
+    height: 150px;
+    /* Set explicit lower height */
+    /* max-width: 55%; */
+    /* Optional: control card width */
+    justify-content: center;
+    /* Vertically center text inside */
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+
+/* Responsive fallback for smaller screens */
+
+@media screen and (max-width: 768px) {
+    .cardGrid {
+        grid-template-columns: 1fr;
+    }
+}

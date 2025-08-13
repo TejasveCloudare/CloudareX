@@ -1,0 +1,32 @@
+{
+    "heading": {
+        "title": "You will find 95% of CloudareX members representing the best companies in India.",
+        "subtitle": ""
+    },
+    "companies": [
+        {
+            "name": "Amazon",
+            "logo": "logo.png"
+        },
+        {
+            "name": "TCS",
+            "logo": "logo.png"
+        },
+        {
+            "name": "IBM",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Accenture",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Google",
+            "logo": "logo.png"
+        },
+        {
+            "name": "Microsoft",
+            "logo": "logo.png"
+        }
+    ]
+}

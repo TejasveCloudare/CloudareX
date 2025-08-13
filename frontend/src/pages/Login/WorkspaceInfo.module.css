@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    height: 79vh;
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    /* margin-top: 10vh; */
+    align-items: center;
+    padding: 50px;
+    gap: 50px;
+}
+
+.left,
+.right {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #1a1a1a;
+    color: #fff;
+}
+
+button {
+    padding: 12px;
+    background: #0044ff;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.previewCard {
+    background: #1b1b1b;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.detailsBox p {
+    margin: 10px 0;
+}
