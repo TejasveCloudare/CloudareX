@@ -117,7 +117,7 @@ MEDIA_URL = "media/"
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://cloudare-x.vercel.app",
+    "https://cloudarex.onrender.com",
 ]
 
 ALLOWED_HOSTS = ["*"]
