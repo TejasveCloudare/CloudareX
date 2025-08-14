@@ -120,6 +120,10 @@ CORS_ALLOWED_ORIGINS = [
     "https://cloudarex.onrender.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://cloudarex.onrender.com',
+]
+
 ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = "app.User"
