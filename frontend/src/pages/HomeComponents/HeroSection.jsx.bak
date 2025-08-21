@@ -1,14 +1,7 @@
 import React from "react";
 import HeroStyle from "./HeroSection.module.css";
-import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/login");
-  };
-
   return (
     <div className={HeroStyle.heroWrapper}>
       <div className={HeroStyle.heroContent}>
@@ -19,16 +12,14 @@ const HeroSection = () => {
           <span className={HeroStyle.break}>reach elsewhere</span>
         </h1>
         <p className={HeroStyle.heroSubtext}>
-          CloudareX connects you with experienced professionals
+          GrowthX connects you with experienced professionals
           <br />
           in <strong>Product</strong>, <strong>Strategy</strong>,{" "}
           <strong>Growth</strong>, <strong>Marketing</strong>, and
           <br />
           <strong>Executive roles</strong>
         </p>
-        <button className={HeroStyle.ctaButton} onClick={handleNavigate}>
-          Post a job →
-        </button>
+        <button className={HeroStyle.ctaButton}>Post a job →</button>
       </div>
     </div>
   );
