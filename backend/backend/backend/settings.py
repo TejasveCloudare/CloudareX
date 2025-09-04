@@ -114,9 +114,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "media/"
 
 # CORS_ALLOWED_ORIGINS=[]
-CORS_ALLOW_ALL_ORIGINS = True
-
+CORS_ALLOW_ALL_ORIGINS = False  # safer than allowing all
 CORS_ALLOWED_ORIGINS = [
+    "https://cloudarex.onrender.com",
+]
+
+CSRF_TRUSTED_ORIGINS = [
     "https://cloudarex.onrender.com",
 ]
 
