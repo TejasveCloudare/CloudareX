@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import *
 from django.contrib.auth.admin import UserAdmin
+from django.utils.html import format_html
+from django.urls import reverse
 
 
 @admin.register(User)
@@ -89,8 +91,10 @@ class WorkspaceAdmin(admin.ModelAdmin):
 
 @admin.register(JobPosting)
 class JobPostingAdmin(admin.ModelAdmin):
-    list_display = ('job_title', 'workspace', 'function',
-                    'compensation_lpa', 'mode_of_work', 'list_skills_with_ids')
+    list_display = (
+        'job_title', 'workspace', 'function', 'compensation_lpa',
+        'mode_of_work', 'list_skills_with_ids', 'applied_candidates_count'
+    )
     list_filter = ('function', 'mode_of_work')
     search_fields = ('job_title', 'workspace__email')
     filter_horizontal = ('non_negotiable_skills',)
@@ -99,11 +103,22 @@ class JobPostingAdmin(admin.ModelAdmin):
 
     def list_skills_with_ids(self, obj):
         return ", ".join([f"{skill.name} (ID: {skill.id})" for skill in obj.non_negotiable_skills.all()])
-
     list_skills_with_ids.short_description = "Skills (Name + ID)"
+
+    def applied_candidates_count(self, obj):
+        return obj.applications.count()
+    applied_candidates_count.short_description = 'Applied Candidates'
 
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('id', 'name')
+
+
+@admin.register(AppliedCandidate)
+class AppliedCandidateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone', 'job',
+                    'expected_ctc', 'notice_period', 'applied_at')
+    search_fields = ('name', 'email', 'phone')
+    list_filter = ('job',)

@@ -32,4 +32,9 @@ urlpatterns = [
          name="workspace-by-domain"),
     path('jobs/', JobPostingListView.as_view(), name='job-postings-list'),
     path('jobs/<int:job_id>/', JobPostingListView.as_view(), name='job-detail'),
+    path('job-posting/choices/', JobPostingChoicesView.as_view(),
+         name='job-posting-choices'),
+    path('apply/<int:job_id>/', ApplyJobAPIView.as_view(), name='apply-job'),
+    path('jobs/<int:job_id>/candidates/',
+         ApplyJobAPIView.as_view(), name='applied_candidates'),
 ]

@@ -1,5 +1,5 @@
 /**
- * Added by - Ashish Dewangan on 24-05-2024
+ * Added by - Tejasve gupta on 24-05-2024
  * Reason - Added configuration for notification
  */
 import { Notyf } from "notyf";
@@ -14,7 +14,7 @@ const notificationObject = new Notyf({
   types: [
     {
       type: "success",
-      background: '#4AB516',
+      background: "#4AB516",
     },
   ],
 });

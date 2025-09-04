@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Lstyles from "./Location.module.css";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { GlobalContext } from "../../context/Context";
 
 const Location = ({ formData, onChange }) => {
+  const { setStep } = useContext(GlobalContext);
+
+  const goToPreviousStep = () => {
+    setStep(2); // Navigate to Responsibilities
+  };
+
+  const goToNextStep = () => {
+    setStep(4); // Navigate to Additional Details
+  };
+
   return (
     <div className={Lstyles.stepForm}>
       <h2 className={Lstyles.heading}>Job Location</h2>
@@ -26,6 +38,16 @@ const Location = ({ formData, onChange }) => {
         onChange={(e) => onChange("work_location", e.target.value)}
         placeholder="Enter job location"
       />
+
+      {/* Navigation Buttons */}
+      <div className={Lstyles.navigationButtons}>
+        <button className={Lstyles.backBtn} onClick={goToPreviousStep}>
+          <FaArrowLeft /> Back
+        </button>
+        <button className={Lstyles.nextBtn} onClick={goToNextStep}>
+          Next <FaArrowRight />
+        </button>
+      </div>
     </div>
   );
 };

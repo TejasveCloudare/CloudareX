@@ -15,10 +15,11 @@ const JobPostingForm = () => {
 
   const [formData, setFormData] = useState({
     job_title: "",
+    function: "",
     experience_min: "",
     experience_max: "",
+    employment_type: "", // ✅ Added this field
     number_of_openings: "",
-    function: "",
     compensation_lpa: "",
     is_compensation_negotiable: false,
     esops_lpa: "",
@@ -63,10 +64,11 @@ const JobPostingForm = () => {
       // Optionally reset form
       setFormData({
         job_title: "",
+        function: "",
         experience_min: "",
         experience_max: "",
+        employment_type: "", // ✅ Reset this too
         number_of_openings: "",
-        function: "",
         compensation_lpa: "",
         is_compensation_negotiable: false,
         esops_lpa: "",

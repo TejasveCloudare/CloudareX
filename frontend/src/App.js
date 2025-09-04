@@ -19,6 +19,8 @@ import JobPosting from "./pages/Dashboard/JobPosting.jsx";
 import JobPostingForm from "./pages/dbJobsComponents/JobPostingForm.jsx";
 import ViewJobs from "./pages/Dashboard/ViewJobs.jsx";
 import JobsById from "./pages/dbJobsComponents/JobsById.jsx";
+import ApplyNowById from "./pages/dbJobsComponents/ApplyNowById.jsx";
+import AppliedCandidates from "./pages/dbJobsComponents/AppliedCandidates.jsx";
 
 function App() {
   return (
@@ -41,6 +43,11 @@ function App() {
           <Route path="create-job" element={<JobPostingForm />} />{" "}
           <Route path="view-jobs" element={<ViewJobs />} />{" "}
           <Route path="job/:jobId" element={<JobsById />} />{" "}
+          <Route path="apply-now/:jobId" element={<ApplyNowById />} />{" "}
+          <Route
+            path="applied-candidates/:jobId"
+            element={<AppliedCandidates />}
+          />{" "}
         </Route>{" "}
       </Routes>{" "}
       <Footer />{" "}
