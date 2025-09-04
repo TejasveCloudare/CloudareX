@@ -227,6 +227,10 @@ class Skill(models.Model):
 
 class JobPosting(models.Model):
     FUNCTION_CHOICES = [
+        ('IT', 'IT'),
+        ('Finance', 'Finance'),
+        ('Healthcare', 'Healthcare'),
+        ('Education', 'Education'),
         ('product', 'Product'),
         ('growth', 'Growth'),
         ('strategy', 'Strategy'),
@@ -238,6 +242,15 @@ class JobPosting(models.Model):
         ('remote', 'Remote'),
         ('on_site', 'On-Site'),
         ('hybrid', 'Hybrid'),
+    ]
+
+    EMPLOYMENT_TYPE_CHOICES = [
+        ('full_time_permanent', 'Full Time - Permanent'),
+        ('full_time_contract', 'Full Time - Temporary/Contractual'),
+        ('full_time_freelance', 'Full Time - Freelance/Home Based'),
+        ('part_time_permanent', 'Part Time - Permanent'),
+        ('part_time_contract', 'Part Time - Temporary/Contractual'),
+        ('part_time_freelance', 'Part Time - Freelance/Home Based'),
     ]
 
     workspace = models.ForeignKey(
@@ -259,6 +272,11 @@ class JobPosting(models.Model):
     mode_of_work = models.CharField(
         max_length=20, choices=MODE_OF_WORK_CHOICES)
     work_location = models.CharField(max_length=255, blank=True, null=True)
+    employment_type = models.CharField(
+        max_length=50,
+        choices=EMPLOYMENT_TYPE_CHOICES,
+        default='full_time_permanent'
+    )
 
     # Optional Fields
     variable_lpa = models.FloatField(blank=True, null=True)
@@ -272,4 +290,20 @@ class JobPosting(models.Model):
                 {'work_location': "Work location is required for On-Site or Hybrid mode."})
 
     def __str__(self):
-        return f"{self.job_title} at {self.workspace.email}"
+        return f"{self.job_title} at {self.workspace}"
+
+
+class AppliedCandidate(models.Model):
+    job = models.ForeignKey(
+        'JobPosting', on_delete=models.CASCADE, related_name='applications')
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    expected_ctc = models.DecimalField(max_digits=10, decimal_places=2)
+    notice_period = models.PositiveIntegerField()  # in days
+    # make sure MEDIA settings are configured
+    resume = models.FileField(upload_to='resumes/')
+    applied_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} applied for {self.job.job_title}"

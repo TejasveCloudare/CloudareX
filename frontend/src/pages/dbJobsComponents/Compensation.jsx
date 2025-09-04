@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Cstyles from "./Compensation.module.css";
+import { GlobalContext } from "../../context/Context";
 
 const Compensation = ({ formData, onChange }) => {
+  const { setStep } = useContext(GlobalContext);
+
+  const goToPreviousStep = () => {
+    setStep(0); // Navigate to Job Details
+  };
+
+  const goToNextStep = () => {
+    setStep(2); // Navigate to Responsibilities
+  };
+
   return (
     <div className={Cstyles.stepForm}>
       <h2 className={Cstyles.heading}>Compensation</h2>
@@ -47,6 +59,16 @@ const Compensation = ({ formData, onChange }) => {
         onChange={(e) => onChange("variable_lpa", parseFloat(e.target.value))}
         placeholder="Enter variable pay"
       />
+
+      {/* ✅ Navigation Buttons */}
+      <div className={Cstyles.navigationButtons}>
+        <button className={Cstyles.backBtn} onClick={goToPreviousStep}>
+          <FaArrowLeft /> Back
+        </button>
+        <button className={Cstyles.nextBtn} onClick={goToNextStep}>
+          Next <FaArrowRight />
+        </button>
+      </div>
     </div>
   );
 };

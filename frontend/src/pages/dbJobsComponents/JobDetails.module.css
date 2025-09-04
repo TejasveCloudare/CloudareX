@@ -35,6 +35,12 @@
     border-radius: 8px;
     outline: none;
     transition: all 0.3s ease;
+    appearance: none;
+    /* Remove default browser styles */
+    -webkit-appearance: none;
+    /* Safari/Chrome */
+    -moz-appearance: none;
+    /* Firefox */
 }
 
 .input:focus {
@@ -44,4 +50,58 @@
 
 .input::placeholder {
     color: #777;
+}
+
+
+/* ✅ For select dropdown arrow customization */
+
+.input.select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23bbbbbb' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4H4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    padding-right: 34px;
+    /* Space for arrow */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.column {
+    flex: 1;
+}
+
+
+/* Make inputs take full width in column */
+
+.column .input {
+    width: 60%;
+}
+
+.nextBtn {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.nextBtn:hover {
+    background-color: #0097a7;
+}
+
+.nextBtn svg {
+    font-size: 1.1rem;
 }

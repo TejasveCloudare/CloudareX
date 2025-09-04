@@ -143,14 +143,26 @@ class SkillSerializer(serializers.ModelSerializer):
         fields = ['name']
 
 
+class AppliedCandidateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AppliedCandidate
+        fields = ['id', 'job', 'name', 'email', 'phone',
+                  'expected_ctc', 'notice_period', 'resume', 'applied_at']
+
+
 class JobSerializer(serializers.ModelSerializer):
     company_website = serializers.SerializerMethodField()
     non_negotiable_skills = SkillSerializer(many=True)
+    applied_candidates_count = serializers.IntegerField(
+        source='applications.count', read_only=True)
+    applied_candidates = AppliedCandidateSerializer(
+        source='applications', many=True, read_only=True)
 
     class Meta:
         model = JobPosting
-        fields = '__all__'  # keeps all existing fields
-        extra_fields = ['company_website']  # for clarity, but optional
+        fields = '__all__'
+        extra_fields = ['company_website',
+                        'applied_candidates_count', 'applied_candidates']
 
     def get_company_website(self, obj):
         return obj.workspace.company_website if obj.workspace else None

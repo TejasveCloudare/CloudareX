@@ -20,6 +20,9 @@ from urllib.parse import urlparse
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import get_object_or_404
+from rest_framework.parsers import MultiPartParser, FormParser
+
 User = get_user_model()
 
 
@@ -631,4 +634,46 @@ class JobPostingListView(APIView):
             Q(is_verified=True) & Q(is_active=True)
         ).order_by('-id')
         serializer = JobSerializer(job_postings, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class JobPostingChoicesView(APIView):
+    def get(self, request):
+        choices_data = {
+            "function_choices": [
+                {"value": key, "label": value} for key, value in JobPosting.FUNCTION_CHOICES
+            ],
+            "mode_of_work_choices": [
+                {"value": key, "label": value} for key, value in JobPosting.MODE_OF_WORK_CHOICES
+            ],
+            "employment_type_choices": [
+                {"value": key, "label": value} for key, value in JobPosting.EMPLOYMENT_TYPE_CHOICES
+            ]
+        }
+
+        return Response(choices_data, status=status.HTTP_200_OK)
+
+
+class ApplyJobAPIView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, *args, **kwargs):
+        job_id = kwargs.get('job_id')
+        job = get_object_or_404(JobPosting, id=job_id)
+
+        data = request.data.copy()
+        data['job'] = job.id
+
+        serializer = AppliedCandidateSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Application submitted successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, *args, **kwargs):
+        job_id = kwargs.get('job_id')
+        job = get_object_or_404(JobPosting, id=job_id)
+        applied_candidates = job.applications.all()
+        serializer = AppliedCandidateSerializer(applied_candidates, many=True)
+
         return Response(serializer.data, status=status.HTTP_200_OK)

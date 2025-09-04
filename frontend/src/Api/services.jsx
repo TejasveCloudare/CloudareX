@@ -561,3 +561,80 @@ export const getJobById = async (jobId) => {
     return null;
   }
 };
+
+export const getJobPostingChoices = async () => {
+  const response = await API.get(`/job-posting/choices/`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).catch((err) => {
+    console.error("Error fetching job postings Choices:", err);
+    return { error: err };
+  });
+
+  if (response?.response) {
+    console.error("Server error:", response.response.data);
+    return [];
+  } else if (response?.status === 200) {
+    return response.data;
+  } else {
+    return [];
+  }
+};
+
+export const applyForJob = async (jobId, formData) => {
+  try {
+    const response = await API.post(`/apply/${jobId}/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response?.status === 201 || response?.status === 200) {
+      notificationObject.success("Application submitted successfully");
+      console.log("Application Response:", response.data);
+      return response.data;
+    }
+  } catch (err) {
+    console.error("Error applying for job:", err);
+
+    if (err.response?.status === 400) {
+      notificationObject.error("Invalid application data");
+    } else if (err.response?.status === 404) {
+      notificationObject.error("Job not found");
+    } else if (err.response?.status === 401) {
+      notificationObject.error("Unauthorized access");
+    } else {
+      notificationObject.error("Something went wrong. Please try again.");
+    }
+  }
+
+  return null;
+};
+
+export const getAppliedCandidates = async (jobId) => {
+  try {
+    const response = await API.get(`/jobs/${jobId}/candidates/`);
+
+    if (response?.status === 200) {
+      console.log("Applied Candidates Data:", response.data);
+      return response.data;
+    }
+  } catch (err) {
+    console.error("Error fetching applied candidates:", err);
+
+    if (err.response?.status === 404) {
+      notificationObject.error(
+        "Job not found. Candidates cannot be retrieved."
+      );
+    } else if (err.response?.status === 401) {
+      notificationObject.error("Unauthorized access. Please log in.");
+    } else {
+      notificationObject.error(
+        "Failed to retrieve candidates. Please try again."
+      );
+    }
+  }
+
+  return null;
+};

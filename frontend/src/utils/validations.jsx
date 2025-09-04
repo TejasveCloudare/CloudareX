@@ -1,8 +1,3 @@
-/**
- * Created by - Ashish Dewangan on 22-05-2024
- * Reason - To have different validation methods
- */
-
 export const checkIsEmailInvalid = (value) => {
   const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]/;
   if (pattern.test(value)) return false;
@@ -39,12 +34,6 @@ export const checkIfMinimumThanMinValue = (value, minimum) => {
   return false;
 };
 
-/**Code added By Tejasve GUpta on 24-05-2024
-  Reason - Confirm Password Matching
-*/
 export const checkPasswordDontmatch = (valueOne, valueTwo) => {
   return valueOne !== valueTwo;
 };
-/**End of Code added By Tejasve GUpta on 24-05-2024
-  Reason - Confirm Password Matching
-*/

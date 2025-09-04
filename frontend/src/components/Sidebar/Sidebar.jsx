@@ -2,62 +2,29 @@ import React, { useContext, useState, useEffect } from "react";
 import { GlobalContext } from "../../context/Context";
 import SBstyles from "./Sidebar.module.css";
 import { useNavigate } from "react-router-dom";
-import { getWorkspacesByWebsite } from "../../Api/services";
 import { FaBars } from "react-icons/fa";
 
 const Sidebar = ({ onToggle }) => {
-  const { user, workspace } = useContext(GlobalContext);
+  const { user, workspace, associatedNames } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const [associatedNames, setAssociatedNames] = useState([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Toggle for desktop expand/collapse
   const toggleSidebar = () => {
     const newState = !isExpanded;
     setIsExpanded(newState);
-    if (onToggle) onToggle(newState); // inform parent (Dashboard)
+    if (onToggle) onToggle(newState);
   };
 
-  // Toggle for mobile open/close
   const toggleMobileSidebar = () => {
     setIsMobileOpen((prev) => !prev);
   };
-
-  // Fetch associated names
-  useEffect(() => {
-    if (!workspace?.companyWebsite) return;
-
-    const normalizeWebsite = (url) => {
-      try {
-        let domain = url.toLowerCase().replace(/^https?:\/\//, "");
-        if (domain.startsWith("www.")) domain = domain.slice(4);
-        return domain;
-      } catch {
-        return url;
-      }
-    };
-
-    const fetchAssociatedNames = async () => {
-      const normalizedWebsite = normalizeWebsite(workspace.companyWebsite);
-      const data = await getWorkspacesByWebsite(normalizedWebsite);
-
-      if (Array.isArray(data)) {
-        const names = data.filter(
-          (name) => name?.toLowerCase() !== user?.full_name?.toLowerCase()
-        );
-        setAssociatedNames(names);
-      }
-    };
-
-    fetchAssociatedNames();
-  }, [workspace?.companyWebsite, user?.full_name]);
 
   if (!user?.email) return null;
 
   const handleNavigate = (path) => {
     navigate(path);
-    setIsMobileOpen(false); // close on mobile after navigation
+    setIsMobileOpen(false);
   };
 
   return (
@@ -72,7 +39,7 @@ const Sidebar = ({ onToggle }) => {
           isExpanded ? SBstyles.expanded : SBstyles.collapsed
         } ${isMobileOpen ? SBstyles.showMobile : SBstyles.hideMobile}`}
       >
-        {/* Optional Desktop Toggle Button */}
+        {/* Desktop Toggle */}
         <button className={SBstyles.toggleBtn} onClick={toggleSidebar}>
           {isExpanded ? "<" : ">"}
         </button>
@@ -80,7 +47,9 @@ const Sidebar = ({ onToggle }) => {
         {/* Associated People */}
         <div className={SBstyles.associatedNames}>
           <h4>Associated People</h4>
-          {associatedNames.length > 0 ? (
+          {associatedNames === null ? (
+            <p>Loading...</p>
+          ) : associatedNames.length > 0 ? (
             <ul>
               {associatedNames.map((name, idx) => (
                 <li key={idx}>{name}</li>
