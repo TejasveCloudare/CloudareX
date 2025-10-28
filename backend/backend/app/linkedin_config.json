@@ -1,0 +1,14 @@
+{
+    "access_token": "AQV_fJKLpdSZ5FUDvel1ZXLA2iT0wJPmoU9usvJiQ_vG27R8v7u-EofPNskWa-noxQ",
+    "client_id": "867lfcs3",
+    "client_secret": "WPL_A.VwS5Ow==",
+    "urls": {
+        "userinfo": "https://api.linkedin.com/v2/userinfo",
+        "authUrl": "https://www.linkedin.com/oauth/v2/authorization",
+        "ugcPosts": "https://api.linkedin.com/v2/ugcPosts",
+        "shares": "https://api.linkedin.com/v2/shares"
+    },
+    "response_type": "code",
+    "redirect_uri": "http://localhost:8000/api/v1/linkedin/callback/",
+    "scope": "openid%20profile%20email%20w_member_social"
+}

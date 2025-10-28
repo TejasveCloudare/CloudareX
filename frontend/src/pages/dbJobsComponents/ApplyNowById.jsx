@@ -54,7 +54,7 @@ const ApplyNowById = () => {
 
     // Validate form
     if (!formData.resume) {
-      alert("Please upload your resume before submitting.");
+      // alert("Please upload your resume before submitting.");
       return;
     }
 
@@ -74,17 +74,29 @@ const ApplyNowById = () => {
     setSubmitting(false);
 
     if (result) {
-      alert("Application submitted successfully!");
+      // alert("Application submitted successfully!");
       navigate(-1); // Go back after success
     } else {
-      alert("Failed to submit application. Please try again.");
+      // alert("Failed to submit application. Please try again.");
     }
   };
 
   if (loading) return <div className={ApplyStyles.loading}>Loading...</div>;
   if (!job) return <div className={ApplyStyles.error}>Job not found</div>;
 
-  const logoUrl = `https://logo.clearbit.com/${job?.company_website}`;
+  const extractDomain = (url) => {
+    try {
+      return new URL(url).hostname.replace("www.", "");
+    } catch {
+      return null;
+    }
+  };
+
+  // const logoUrl = `https://logo.clearbit.com/${job?.company_website}`;
+  const domain = extractDomain(job?.company_website);
+  const logoUrl = domain
+    ? `https://logo.clearbit.com/${domain}`
+    : "/default-logo.png";
 
   return (
     <div className={ApplyStyles.container}>

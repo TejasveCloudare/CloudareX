@@ -37,4 +37,5 @@ urlpatterns = [
     path('apply/<int:job_id>/', ApplyJobAPIView.as_view(), name='apply-job'),
     path('jobs/<int:job_id>/candidates/',
          ApplyJobAPIView.as_view(), name='applied_candidates'),
+    path("linkedin/callback/", linkedin_callback, name="linkedin_callback"),
 ]

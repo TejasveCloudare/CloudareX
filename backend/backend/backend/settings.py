@@ -114,12 +114,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "media/"
 
 # CORS_ALLOWED_ORIGINS=[]
-CORS_ALLOW_ALL_ORIGINS = False  # safer than allowing all
-CORS_ALLOWED_ORIGINS = [
-    "https://cloudarex.onrender.com",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
-CSRF_TRUSTED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
     "https://cloudarex.onrender.com",
 ]
 
@@ -138,6 +135,15 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tejasve.g@cloudare.in'
 EMAIL_HOST_PASSWORD = 'T$9644649413tg'
+
+GOOGLE_DRIVE_CREDENTIALS_FILE = os.path.join(
+    BASE_DIR, "backend", "G_drive_credentials.json")
+
+GOOGLE_DRIVE_FOLDER_ID = "19lDBDKbGrThUZYEIUd7PZ37hSxlGhg4l"
+
+
+MS_DRIVE_CREDENTIALS_FILE = os.path.join(
+    BASE_DIR, "backend", "MS_drive_credentials.json")
 
 """
 End of code addition by - Tejasve Gupta on 17-07-2025

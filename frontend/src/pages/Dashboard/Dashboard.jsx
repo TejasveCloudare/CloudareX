@@ -27,13 +27,10 @@ const Dashboard = () => {
     const fetchWorkspace = async () => {
       try {
         const data = await getWorkspaceByEmail(user.email);
-        if (
-          data &&
-          Array.isArray(data.workspaces) &&
-          data.workspaces.length > 0
-        ) {
+
+        if (data?.workspace) {
           const finalWorkspace = {
-            ...data.workspaces[0],
+            ...data.workspace,
             choices: data.choices,
           };
           setWorkspace(finalWorkspace);
@@ -42,6 +39,7 @@ const Dashboard = () => {
         }
       } catch (error) {
         console.error("Error fetching workspace:", error);
+        setWorkspace(null);
       }
     };
 

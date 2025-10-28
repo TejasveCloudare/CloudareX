@@ -16,12 +16,14 @@ from .models import *
 from .serializers import *
 import requests
 from urllib.parse import urlparse
-
+import os
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
@@ -240,8 +242,9 @@ class WorkspaceView(APIView):
 
     def get(self, request):
         email = request.query_params.get('email', None)
+        print("---Email--", email)
 
-    # Prepare choices
+        # Prepare choices
         choices = {
             "industry": get_choices(Workspace.INDUSTRY_CHOICES),
             "type": get_choices(Workspace.TYPE_CHOICES),
@@ -252,30 +255,24 @@ class WorkspaceView(APIView):
         if email:
             try:
                 workspace = Workspace.objects.get(email=email)
-                serializer = WorkspaceSerializer(workspace)
-                response_data = {
-                    "workspace": serializer.data,
-                    "choices": choices
-                }
-                # print("Response:1", response_data)
-                return Response(response_data, status=status.HTTP_200_OK)
-
             except Workspace.DoesNotExist:
                 error_response = {
                     "error": "Workspace with this email does not exist",
-                    "choices": choices
+                    "choices": choices,
+                    "workspace": None,
                 }
-                # print("Response:2", error_response)
                 return Response(error_response, status=status.HTTP_404_NOT_FOUND)
         else:
-            workspaces = Workspace.objects.all()
-            serializer = WorkspaceSerializer(workspaces, many=True)
-            response_data = {
-                "workspaces": serializer.data,
-                "choices": choices
-            }
-            # print("Response:3", response_data)
-            return Response(response_data, status=status.HTTP_200_OK)
+            # If no email provided → just return the first workspace (or None if empty)
+            workspace = Workspace.objects.first()
+
+        serializer = WorkspaceSerializer(workspace) if workspace else None
+
+        response_data = {
+            "workspace": serializer.data if serializer else None,
+            "choices": choices,
+        }
+        return Response(response_data, status=status.HTTP_200_OK)
 
 
 class UpdateWorkspaceView(APIView):
@@ -658,16 +655,46 @@ class ApplyJobAPIView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, *args, **kwargs):
-        job_id = kwargs.get('job_id')
+        job_id = kwargs.get("job_id")
         job = get_object_or_404(JobPosting, id=job_id)
 
         data = request.data.copy()
-        data['job'] = job.id
+        data["job"] = job.id
 
         serializer = AppliedCandidateSerializer(data=data)
         if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'Application submitted successfully'}, status=status.HTTP_201_CREATED)
+            # ✅ Always save to DB first
+            candidate = serializer.save()
+
+            # ✅ Then try uploading to Google Drive
+            if candidate.resume:
+                file_path = candidate.resume.path
+            filename = os.path.basename(file_path)
+
+            # Upload to Google Drive
+            try:
+                drive_file = upload_to_google_drive(file_path, filename)
+                candidate.drive_file_id = drive_file.get("id")
+                candidate.drive_file_link = drive_file.get("webViewLink")
+            except Exception as e:
+                print(f"Google Drive upload failed: {str(e)}")
+
+            # Upload to OneDrive
+            try:
+                ms_file = upload_to_onedrive(
+                    file_path, filename, "contoso.sharepoint.com:/sites/HR")
+                candidate.onedrive_file_id = ms_file.get("id")
+                candidate.onedrive_file_link = ms_file.get("webUrl")
+            except Exception as e:
+                print(f"OneDrive upload failed: {str(e)}")
+
+            candidate.save()
+
+            return Response(
+                {"message": "Application submitted successfully"},
+                status=status.HTTP_201_CREATED,
+            )
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
@@ -677,3 +704,74 @@ class ApplyJobAPIView(APIView):
         serializer = AppliedCandidateSerializer(applied_candidates, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+# ----------Linked In-------------------------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(BASE_DIR, "linkedin_config.json")
+
+with open(CONFIG_PATH, "r") as file:
+    config = json.load(file)
+
+ACCESS_TOKEN = config["access_token"]
+URLS = config["urls"]
+
+
+def linkedin_get(endpoint_key):
+    url = URLS[endpoint_key]
+    headers = {
+        "Authorization": f"Bearer {ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print(f"[ERROR] {response.status_code}: {response.text}")
+        return None
+
+
+@csrf_exempt
+def test_callback(request):
+    print("🔥 Test callback hit!")
+    return JsonResponse({"ok": True})
+
+
+@csrf_exempt
+def linkedin_callback(request):
+    print("⚡ Callback hit!")
+    code = request.GET.get("code")
+    if not code:
+        return JsonResponse({"error": "No code returned"}, status=400)
+
+    print("✅ Received LinkedIn code:", code)
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(BASE_DIR, "linkedin_config.json")
+
+    with open(config_path, "r") as file:
+        config = json.load(file)
+
+    token_url = "https://www.linkedin.com/oauth/v2/accessToken"
+    data = {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": config["redirect_uri"],
+        "client_id": config["client_id"],
+        "client_secret": config["client_secret"],
+    }
+
+    response = requests.post(token_url, data=data)
+
+    if response.status_code == 200:
+        token_data = response.json()
+        config["access_token"] = token_data["access_token"]
+
+        with open(config_path, "w") as file:
+            json.dump(config, file, indent=2)
+
+        print("✅ New LinkedIn token saved to linkedin_config.json")
+        return JsonResponse({"message": "✅ Token saved", "token": token_data})
+    else:
+        print("❌ LinkedIn token exchange failed:", response.text)
+        return JsonResponse({"error": response.text}, status=response.status_code)
