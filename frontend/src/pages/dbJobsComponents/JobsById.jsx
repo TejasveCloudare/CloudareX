@@ -85,7 +85,20 @@ const JobsById = () => {
     },
   ];
 
-  const logoUrl = `https://logo.clearbit.com/${job?.company_website}`;
+  const extractDomain = (url) => {
+    try {
+      return new URL(url).hostname.replace("www.", "");
+    } catch {
+      return null;
+    }
+  };
+
+  const domain = extractDomain(job?.company_website);
+  const logoUrl = domain
+    ? `https://logo.clearbit.com/${domain}`
+    : "/default-logo.png";
+
+  // const logoUrl = `https://logo.clearbit.com/${job?.company_website}`;
 
   const handleApplyNow = () => {
     navigate(`/dashboard/apply-now/${jobId}`);

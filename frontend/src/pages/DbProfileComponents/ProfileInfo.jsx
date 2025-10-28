@@ -9,6 +9,7 @@ const ProfileInfo = () => {
   const [formData, setFormData] = useState({});
   const [isModified, setIsModified] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  console.log("workspace", workspace);
 
   useEffect(() => {
     if (workspace) {

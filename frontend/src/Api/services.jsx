@@ -395,11 +395,14 @@ export const getLoginQuotesData = async () => {
 // -----------------GET USER/WORKSPACE INFO----------------------------
 
 export const getWorkspaceByEmail = async (email) => {
-  const response = await API.get(`/workspace/?${email}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).catch((err) => {
+  const response = await API.get(
+    `/workspace/?email=${encodeURIComponent(email)}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  ).catch((err) => {
     console.log(err);
     return null;
   });
@@ -415,12 +418,13 @@ export const getWorkspaceByEmail = async (email) => {
   }
 
   if (response?.status === 200) {
-    const { workspaces, choices } = response.data;
-    console.log("Workspace:", workspaces[0]);
+    const { workspace, choices } = response.data;
+
+    console.log("Workspace:", workspace);
     console.log("choices:", choices);
 
     return {
-      workspaces,
+      workspace,
       choices,
     };
   }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext, useNavigate } from "react-router-dom"; // ✅ add useNavigate
 import JobPostingStyles from "./JobPosting.module.css";
 import emptyFolderImage from "../../assets/empty-jobs.webp";
-import { useOutletContext } from "react-router-dom";
 import JobPostingForm from "../dbJobsComponents/JobPostingForm";
 import { getJobPostingsByEmail } from "../../Api/services"; // import service
 
@@ -10,6 +10,7 @@ const JobPosting = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [jobs, setJobs] = useState([]);
   const { workspace, user } = useOutletContext();
+  const navigate = useNavigate(); // ✅ hook for navigation
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -33,8 +34,20 @@ const JobPosting = () => {
     setShowSidebar(true);
   };
 
-  var website = workspace?.companyWebsite;
-  const logoUrl = `https://logo.clearbit.com/${website}`;
+  const extractDomain = (url) => {
+    try {
+      return new URL(url).hostname.replace("www.", "");
+    } catch {
+      return null;
+    }
+  };
+
+  const domain = extractDomain(workspace?.companyWebsite);
+  const logoUrl = domain
+    ? `https://logo.clearbit.com/${domain}`
+    : "/default-logo.png";
+  // var website = workspace?.companyWebsite;
+  // const logoUrl = `https://logo.clearbit.com/${website}`;
 
   // Filter jobs by tab
   const filteredJobs = jobs.filter((job) => {
@@ -129,7 +142,10 @@ const JobPosting = () => {
                       <td>{job?.mode_of_work || "N/A"}</td>
                       <td>{workspace?.fullName || "N/A"}</td>
                       <td>
-                        <button className={JobPostingStyles.viewBtn}>
+                        <button
+                          className={JobPostingStyles.viewBtn}
+                          onClick={() => navigate(`/dashboard/job/${job.id}`)} // ✅ navigate on click
+                        >
                           View job post
                         </button>
                       </td>

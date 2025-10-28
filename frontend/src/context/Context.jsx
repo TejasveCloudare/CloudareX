@@ -43,13 +43,10 @@ export default function Context(props) {
   const getWorkspaceDetails = async (email) => {
     try {
       const workspaceResponse = await getWorkspaceByEmail(email);
-      if (
-        workspaceResponse &&
-        Array.isArray(workspaceResponse.workspaces) &&
-        workspaceResponse.workspaces.length > 0
-      ) {
+
+      if (workspaceResponse?.workspace) {
         const finalWorkspace = {
-          ...workspaceResponse.workspaces[0],
+          ...workspaceResponse.workspace,
           choices: workspaceResponse.choices,
         };
         setWorkspace(finalWorkspace);
@@ -67,11 +64,21 @@ export default function Context(props) {
     }
   };
 
+  // ✅ Automatically fetch associated names once BOTH user + workspace are ready
+  useEffect(() => {
+    console.log("workspace---", workspace);
+    console.log("workspace---", workspace);
+
+    if (workspace?.companyWebsite && user?.full_name) {
+      fetchAssociatedNames(workspace.companyWebsite, user.full_name);
+    }
+  }, [workspace, user]);
+
   // ✅ Fetch associated names based on company website
-  const fetchAssociatedNames = async (companyWebsite) => {
+  const fetchAssociatedNames = async (companyWebsite, currentUserName) => {
     if (!companyWebsite) return;
 
-    setAssociatedNames(null); // ✅ show loading state
+    setAssociatedNames(null); // show loading state
 
     const normalizeWebsite = (url) => {
       try {
@@ -86,10 +93,11 @@ export default function Context(props) {
     const normalizedWebsite = normalizeWebsite(companyWebsite);
     const data = await getWorkspacesByWebsite(normalizedWebsite);
 
-    console.log("Associated names response:", data); // ✅ Debug
+    console.log("Associated names response:", data);
 
     if (Array.isArray(data)) {
       const names = data.filter(
+        // (name) => name?.toLowerCase() !== currentUserName?.toLowerCase()
         (name) => name?.toLowerCase() !== user?.full_name?.toLowerCase()
       );
       setAssociatedNames(names);
@@ -116,7 +124,7 @@ export default function Context(props) {
         setUser,
         workspace,
         setWorkspace,
-        associatedNames, // ✅ Provided
+        associatedNames,
         getWorkspaceDetails,
         currentStep,
         setStep,
