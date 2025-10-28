@@ -1,7 +1,7 @@
 {
-    "access_token": "AQV_fJN-MhKhso8V-QWUE_9RCOoy1dKMZc2d7oHC2GGoT6Z7b3yT5FWWdGpZ2VmYOIm3WUDtrJ8cdI3WOxbo9xOk7u59oGArrADC1l_L-QCQ_MCH8zsUemP1QPg9yd6XRBzx6whdfNpSdipZzTq6QzlcwXjXcklhY2ntpfquqAKLpdSZ5FUDvel1ZXLA2iT0wJPmoU9usvJZuz-Ca48awgsuvtDCvTlOKnZpj3rYVfJwTVyZ6hIGAosHjNYExJLTgXFSCZvFb613kfOAU_mWfZ0o3P4xyyj2QXSwnj7RGMqdvQIWL6Ujfs4stXLNASkZjk2iQ_vG27R8v7u-EofPNskWa-noxQ",
-    "client_id": "867lfu725oncs3",
-    "client_secret": "WPL_AP1.Bivo4dnHN1VnyRSS.VwS5Ow==",
+    "access_token": "AQV_fJKLpdSZ5FUDvel1ZXLA2iT0wJPmoU9usvJiQ_vG27R8v7u-EofPNskWa-noxQ",
+    "client_id": "867lfcs3",
+    "client_secret": "WPL_A.VwS5Ow==",
     "urls": {
         "userinfo": "https://api.linkedin.com/v2/userinfo",
         "authUrl": "https://www.linkedin.com/oauth/v2/authorization",
