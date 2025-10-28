@@ -125,6 +125,11 @@ ALLOWED_HOSTS = ["*"]
 AUTH_USER_MODEL = "app.User"
 
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://cloudarex.onrender.com",
+]
+
+
 """
 Added by Tejasve Gupta on 17-07-2025
 Reason - to configure email setting
